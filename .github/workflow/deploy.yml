@@ -1,21 +1,15 @@
-name: Deploy App
+name: Secure Config
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  deploy-staging:
+  config:
     runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      - name: Use staging secret
-        run: echo "Staging API KEY is ${{ secrets.API_KEY }}"
+    env:
+      APP_ENV: production   # normal env variable
 
-  deploy-production:
-    runs-on: ubuntu-latest
-    environment: production
     steps:
-      - name: Use production secret
-        run: echo "NEW KEY is ${{ secrets.API_KEY }}"
+      - name: Combine secret + env
+        run: |
+          echo "Environment is $APP_ENV"
+          echo "Password is ${{ secrets.DB_PASSWORD }}"
