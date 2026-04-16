@@ -1,0 +1,21 @@
+name: Deploy App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Use staging secret
+        run: echo "Staging API KEY is ${{ secrets.API_KEY }}"
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Use production secret
+        run: echo "Production API KEY is ${{ secrets.API_KEY }}"
