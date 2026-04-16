@@ -18,4 +18,4 @@ jobs:
     environment: production
     steps:
       - name: Use production secret
-        run: echo "Production API KEY is ${{ secrets.API_KEY }}"
+        run: echo "NEW KEY is ${{ secrets.API_KEY }}"
